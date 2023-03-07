@@ -1,9 +1,10 @@
 <template>
     <div class="filter">
-      <li class="filter" v-for="filter in filters"><label>{{filter}}</label>
-        <input type="checkbox" v-bind:name="filter" v-bind:value="filter" checked>
-      </li>
-
+      <ul>
+        <li class="filter" v-for="filter in filters"><label>{{filter}}</label>
+          <input type="checkbox" v-bind:name="filter" v-bind:value="filter" v-on:change="boxChecked">
+        </li>
+      </ul>
 
   </div>
 </template>
@@ -16,12 +17,28 @@ export default {
       type: Set,
       required: true
     }
+  },
+  data(){
+    return{
+      filterChecked:new Set,
+    }
+  },
+  methods:{
+    boxChecked(event){
+      const filters = this.filterChecked;
+      const filterValue = event.target.value;
+      if(filters.has(filterValue)){
+        filters.delete(filterValue);
+      }else{
+        filters.add(filterValue);
+      }
+      this.filterChecked = filters;
+      this.$emit('box-checked',filters);
+    }
   }
-
 }
-
 </script>
 
-<style scoped>
+<style>
 
 </style>

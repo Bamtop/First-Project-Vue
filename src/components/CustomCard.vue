@@ -3,7 +3,7 @@
     <img class="image-card" v-bind:src="character.image" v-bind:alt="character.name">
     <article class="container">
       <h4><b>{{character.name}}</b></h4>
-      <p class="card_status alive dead">Status:  {{character.status}}</p>
+      <p v-bind:class="character.status">Status:  {{character.status}}</p>
       <p class="card_species">Specie:  {{character.species}}</p>
     </article>
   </div>
@@ -40,10 +40,19 @@ img.image-card {
 .container {
   grid-area: article;
 }
-.alive{
+.Alive{
   background-color: #04AA6D;
+  border: #04AA6D solid;
+  border-radius: 10px;
 }
-.dead{
+.Dead{
   background-color: red;
+  border: red solid;
+  border-radius: 10px;
+}
+.unknown{
+  background-color: gray;
+  border: gray solid;
+  border-radius: 10px;
 }
 </style>
