@@ -1,13 +1,7 @@
 <template>
-  <header class="header">
-    <img
-      class="logo-header"
-      src="src/assets/navbar-logo.png"
-      alt="rick y morty logo"
-    />
-    <img class="title" src="src/assets/title.png" alt="rick y morty logo" />
-    <SearchInput v-on:search-input="setQuery"></SearchInput>
-  </header>
+ <CustomHeader>
+    <SearchInput v-on:search-input="setQuery"  ></SearchInput>
+ </CustomHeader>
 
   <main>
     <section>
@@ -35,10 +29,10 @@
 
       </div>
     </section>
-
-    <section class="characters">
+    <characters-grid>
       <CustomCard :characters="VisibleCharacters"></CustomCard>
-    </section>
+    </characters-grid>
+
   </main>
 </template>
 <script>
@@ -46,8 +40,11 @@ import SearchInput from "@/components/SearchInput.vue";
 import CustomFilter from "@/components/CustomFilter.vue";
 import CustomCard from "@/components/CustomCard.vue";
 import CustomSelect from "@/components/CustomSelect.vue";
+import CharactersGrid from "@/components/CharactersGrid.vue";
+import CustomHeader from "@/components/CustomHeader.vue";
+
 export default {
-  components: { CustomSelect, CustomCard, CustomFilter, SearchInput },
+  components: {CustomHeader, CharactersGrid, CustomSelect, CustomCard, CustomFilter, SearchInput },
   data() {
     return {
       characters: [],
@@ -107,6 +104,10 @@ export default {
     setSpecies(event) {
       this.species = event;
     },
+    setSpin(event){
+
+    }
+
   },
   watch:{
     currentQuery(){
@@ -178,14 +179,5 @@ span.filter-letter {
   text-shadow: 0.1em 0.1em 0.2em black;
   font-size: 100%;
 }
-.characters {
-  background: darkkhaki;
-  padding: 1.5rem;
-  border: black solid 0.1rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  grid-column-gap: 1rem;
-  grid-row-gap: 0.8rem;
-}
+
 </style>

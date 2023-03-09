@@ -1,5 +1,6 @@
 <template>
-  <div class="card" v-for="character in characters">
+  <TransitionGroup name="fade">
+  <div class="card" v-for="character in characters" v-bind:key="character.id">
     <img class="image-card" v-bind:src="character.image" v-bind:alt="character.name">
     <article class="container">
       <h4><b>{{character.name}}</b></h4>
@@ -7,6 +8,7 @@
       <p class="card_species">Specie:  {{character.species}}</p>
     </article>
   </div>
+  </TransitionGroup>
 </template>
 
 <script>
@@ -54,5 +56,14 @@ img.image-card {
   background-color: gray;
   border: gray solid;
   border-radius: 10px;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
