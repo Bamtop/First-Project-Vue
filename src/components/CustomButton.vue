@@ -1,12 +1,12 @@
 <template>
 
   <div class="buttons-prev-next">
-    <button v-if="info.prev !== null" @click="inputPrevButton" class="prev-button">
+    <button v-if='info.prev !== null' @click="inputPrevButton" class="prev-button">
       <img class="prev-image" src="src/assets/prev-icon.png" alt="prev-button">
       <span><b>Prev Page</b></span>
     </button>
 
-    <button v-if="info.next !== null"  @click="inputNexButton"  class="next-button">
+    <button v-if='info.next !== null'  @click="inputNexButton"  class="next-button">
       <img class="next-image" src="src/assets/next-icon.png" alt="next-button" >
       <span><b>Next Page</b></span>
     </button>
@@ -14,12 +14,9 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
-  props:{
-    info:{
-      type: String
-    }
-  },
 
   methods:{
     inputNexButton(event){
@@ -28,6 +25,10 @@ export default {
     inputPrevButton(event){
       this.$emit("input-prev",event.target.value)
     }
+  },
+  computed:{
+    ...mapState(['info']),
+
   }
 }
 </script>

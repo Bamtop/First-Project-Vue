@@ -12,11 +12,14 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   name: "CustomCard",
-  props:{
-    characters:{
-      type: Array
+
+  computed:{
+    characters(){
+      return this.$store.state.characters;
     }
   }
 }

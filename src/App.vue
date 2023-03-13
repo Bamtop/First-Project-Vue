@@ -28,19 +28,19 @@
         -->
         <div class="queryFilters">
         <span class="filter-letter"><h2>Filters Querys</h2></span>
-        <CustomSelect :filters="statusSelect" :nameSelect="nameSelect[0]" v-on:filter-selected="addFilterStatus" ></CustomSelect>
-        <CustomSelect :filters="genderSelect" :nameSelect="nameSelect[1]" v-on:filter-selected="addFilterGender" ></CustomSelect>
-        <CustomSelect :filters="speciesSelect" :nameSelect="nameSelect[2]" v-on:filter-selected="addFilterSpecies" ></CustomSelect>
+        <CustomSelect :filters="statusSelect" nameSelect="Status" v-on:filter-selected="addFilterStatus" ></CustomSelect>
+        <CustomSelect :filters="genderSelect" nameSelect="Gender" v-on:filter-selected="addFilterGender" ></CustomSelect>
+        <CustomSelect :filters="speciesSelect" nameSelect="Species" v-on:filter-selected="addFilterSpecies" ></CustomSelect>
         </div>
       </div>
     </section>
     <characters-grid>
-      <CustomCard :characters="VisibleCharacters"></CustomCard>
+      <CustomCard></CustomCard>
     </characters-grid>
     <div class="separator">
 
     </div>
-    <custom-button :info="info" @input-next="setNext" @input-prev="setPrev" ></custom-button>
+    <custom-button @input-next="setNext" @input-prev="setPrev" ></custom-button>
   </main>
 </template>
 <script>
@@ -51,24 +51,17 @@ import CustomSelect from "@/components/CustomSelect.vue";
 import CharactersGrid from "@/components/CharactersGrid.vue";
 import CustomHeader from "@/components/CustomHeader.vue";
 import CustomButton from "@/components/CustomButton.vue";
+import {mapState} from "vuex";
 
 export default {
   components: {CustomButton, CustomHeader, CharactersGrid, CustomSelect, CustomCard, CustomFilter, SearchInput },
+
   data() {
     return {
-      characters: [],
       filterStatus: [],
       filterGender:[],
       filterSpecie:[],
       currentQuery: "",
-      status: new Set(),
-      gender: new Set(),
-      species: new Set(),
-      nameSelect:["Status","Gender","Species"],
-      statusSelect:["Alive","unknown","Dead"],
-      genderSelect:["Male","Female"],
-      speciesSelect:["Human","Alien","Humanoid"],
-      info:"",
       isNext:false,
       isPrev:false,
     };
@@ -110,43 +103,20 @@ export default {
       let api ="https://rickandmortyapi.com/api/character/?"
       api = api + query + filters;
       if(this.isNext){
-        api =this.info.next
+        api =this.$store.state.info.next
       }
       if(this.isPrev){
-        api = this.info.prev
+        api = this.$store.state.info.prev
       }
-
       fetch(api)
         .then((data) => data.json())
         .then((data) => {
-          this.characters = data.results;
-          this.info = data.info;
+          this.$store.commit('setCharacters',data.results);
+          this.$store.commit('setInfo',data.info);
 
         });
     },
-
-    setStatus(event) {
-      this.status = event;
-    },
-
-    setGender(event) {
-      this.gender = event;
-    },
-
-    setSpecies(event) {
-      this.species = event;
-    }
   },
-
-  hiddenPrevButton(){
-    this.notPrev = !this.info.prev;
-  },
-
-  hiddenNextButton(){
-    this.notNext = !this.info.next;
-
-  },
-
   watch:{
     currentQuery(){
       this.search();
@@ -162,44 +132,9 @@ export default {
     }
   },
   computed: {
-    VisibleCharacters() {
-      let charactersVisibles = this.characters;
-      if (this.status.size !== 0) {
-        charactersVisibles = this.characters.filter((character) =>
-          this.status.has(character.status)
-        );
-      }
-      if (this.gender.size !== 0) {
-        charactersVisibles = this.characters.filter((character) =>
-          this.gender.has(character.gender)
-        );
-      }
-      if (this.species.size !== 0) {
-        charactersVisibles = this.characters.filter((character) =>
-          this.species.has(character.species)
-        );
-      }
-      return charactersVisibles;
-    },
+    ...mapState(['statusSelect','genderSelect','speciesSelect','characters']),
 
-    filtersStatus() {
-      return this.characters.reduce((filters, character) => {
-        filters.add(character.status);
-        return filters;
-      }, new Set());
-    },
-    filtersSpecie() {
-      return this.characters.reduce((filters, character) => {
-        filters.add(character.species);
-        return filters;
-      }, new Set());
-    },
-    filtersGender() {
-      return this.characters.reduce((filters, character) => {
-        filters.add(character.gender);
-        return filters;
-      }, new Set());
-    },
+
   },
 };
 </script>

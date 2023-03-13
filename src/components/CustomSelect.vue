@@ -24,6 +24,10 @@ export default {
       this.$emit('filter-selected', event.target.value)
     },
    },
+  computed:{
+
+
+  },
   emits:{
     filterSelected:null,
   }
