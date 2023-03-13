@@ -21,4 +21,14 @@ export default {
   grid-column-gap: 1rem;
   grid-row-gap: 0.8rem;
 }
+@media only screen and (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
