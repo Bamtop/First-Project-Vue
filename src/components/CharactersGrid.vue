@@ -12,14 +12,13 @@ export default {
 
 <style>
 .grid {
-  background: darkkhaki;
-  padding: 1.5rem;
-  border: black solid 0.1rem;
+  padding: 3rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-column-gap: 1rem;
   grid-row-gap: 0.8rem;
+  margin-right: 3rem;
 }
 @media only screen and (max-width: 700px) {
   .grid {

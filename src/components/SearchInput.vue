@@ -59,7 +59,7 @@ export default {
 .search-input-control input:focus,
 .search-input-control input:valid {
   outline: 0;
-  border-bottom-color: #046501;
+  border-bottom-color: #2580ef;
 }
 
 .search-input-control label {
@@ -80,7 +80,7 @@ export default {
 
 .search-input-control input:focus + label span,
 .search-input-control input:valid + label span {
-  color:#046501 ;
+  color:#2580ef ;
   transform: translateY(-50px);
 }
 

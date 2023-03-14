@@ -56,7 +56,7 @@ select {
 }
 label{
   font-family: Impact;
-  color: #04AA6D;
+  color: #2580ef;
   text-shadow: 0.1em 0.1em 0.2em black;
   font-size: 100%;
 }
@@ -64,11 +64,11 @@ label{
 
 select:focus {
   outline: none;
-  border-color: #04AA6D;
+  border-color: #2580ef;
 }
 
 select:hover {
-  border-color: #04AA6D;
+  border-color: #2580ef;
 }
 
 </style>

@@ -22,8 +22,8 @@ export default {
 .header {
   display: flex;
   justify-content: space-between;
-  background-color: #04AA6D;
-  border: #025939 solid;
+  background-color: rgba(112, 160, 232, 0.99);
+  border: #2580ef solid;
   margin-bottom: 1rem;
   height: auto;
 }

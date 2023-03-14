@@ -52,6 +52,9 @@ import CustomButton from "@/components/CustomButton.vue";
 import {mapState} from "vuex";
 export default {
   components: {CustomButton, CustomHeader, CharactersGrid, CustomSelect, CustomCard, CustomFilter, SearchInput },
+  mounted() {
+    this.setup()
+  },
   methods: {
     addFilterStatus(event){
       this.$store.commit('setFilterStatus',event)
@@ -64,6 +67,9 @@ export default {
     addFilterSpecies(event){
       this.$store.commit('setFilterSpecie',event)
       this.$store.dispatch('fetchCharacters')
+    },
+    setup(){
+      return this.$store.dispatch('fetchCharacters');
     },
   },
   computed: {
@@ -81,7 +87,7 @@ main {
 }
 span.filter-letter {
   font-family: Impact;
-  color: #04AA6D;
+  color: #2580ef;
   text-shadow: 0.1em 0.1em 0.2em black;
   font-size: 100%;
 }
