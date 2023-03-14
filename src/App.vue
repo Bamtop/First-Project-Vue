@@ -1,8 +1,7 @@
 <template>
  <CustomHeader>
-    <SearchInput v-on:search-input="setQuery"  ></SearchInput>
+    <SearchInput></SearchInput>
  </CustomHeader>
-
   <main>
     <section class="aside">
       <div class="filters">
@@ -38,9 +37,8 @@
       <CustomCard></CustomCard>
     </characters-grid>
     <div class="separator">
-
     </div>
-    <custom-button @input-next="setNext" @input-prev="setPrev" ></custom-button>
+    <custom-button></custom-button>
   </main>
 </template>
 <script>
@@ -52,89 +50,24 @@ import CharactersGrid from "@/components/CharactersGrid.vue";
 import CustomHeader from "@/components/CustomHeader.vue";
 import CustomButton from "@/components/CustomButton.vue";
 import {mapState} from "vuex";
-
 export default {
   components: {CustomButton, CustomHeader, CharactersGrid, CustomSelect, CustomCard, CustomFilter, SearchInput },
-
-  data() {
-    return {
-      filterStatus: [],
-      filterGender:[],
-      filterSpecie:[],
-      currentQuery: "",
-      isNext:false,
-      isPrev:false,
-    };
-  },
-
   methods: {
-    setNext(){
-      this.isNext = true;
-      this.search();
-      this.isNext = false;
-    },
-    setPrev(){
-      this.isPrev = true;
-      this.search();
-      this.isPrev = false;
-    },
-
-    setQuery(event){
-      this.currentQuery = 'name='+event;
-    },
     addFilterStatus(event){
-      this.filterStatus ="&status="+event;
+      this.$store.commit('setFilterStatus',event)
+      this.$store.dispatch('fetchCharacters')
     },
     addFilterGender(event){
-      this.filterGender = "&gender="+event;
+      this.$store.commit('setFilterGender',event)
+      this.$store.dispatch('fetchCharacters')
     },
     addFilterSpecies(event){
-      this.filterSpecie = "&species="+event;
+      this.$store.commit('setFilterSpecie',event)
+      this.$store.dispatch('fetchCharacters')
     },
-    search() {
-      let currentStatus;
-      let currentGender
-      let currentSpecie
-      let query = this.currentQuery;
-      currentStatus = this.filterStatus;
-      currentGender = this.filterGender;
-      currentSpecie = this.filterSpecie;
-      let filters = currentStatus + currentGender+currentSpecie;
-      let api ="https://rickandmortyapi.com/api/character/?"
-      api = api + query + filters;
-      if(this.isNext){
-        api =this.$store.state.info.next
-      }
-      if(this.isPrev){
-        api = this.$store.state.info.prev
-      }
-      fetch(api)
-        .then((data) => data.json())
-        .then((data) => {
-          this.$store.commit('setCharacters',data.results);
-          this.$store.commit('setInfo',data.info);
-
-        });
-    },
-  },
-  watch:{
-    currentQuery(){
-      this.search();
-    },
-    filterStatus(){
-      this.search()
-    },
-    filterGender(){
-      this.search()
-    },
-    filterSpecie(){
-      this.search()
-    }
   },
   computed: {
-    ...mapState(['statusSelect','genderSelect','speciesSelect','characters']),
-
-
+    ...mapState(['statusSelect','genderSelect','speciesSelect','characters','currentQuery']),
   },
 };
 </script>
@@ -156,7 +89,6 @@ span.filter-letter {
   display: flex;
   flex-direction: column;
 }
-
 @media only screen and (max-width: 500px) {
   main {
     display: grid;
@@ -170,5 +102,4 @@ span.filter-letter {
     justify-content: center;
   }
 }
-
 </style>

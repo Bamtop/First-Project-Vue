@@ -19,11 +19,13 @@ import {mapState} from "vuex";
 export default {
 
   methods:{
-    inputNexButton(event){
-      this.$emit("input-next",event.target.value)
+    inputNexButton(){
+      this.$store.commit("setNext")
+      this.$store.dispatch('fetchCharacters')
     },
-    inputPrevButton(event){
-      this.$emit("input-prev",event.target.value)
+    inputPrevButton(){
+      this.$store.commit("setPrev")
+      this.$store.dispatch('fetchCharacters')
     }
   },
   computed:{
