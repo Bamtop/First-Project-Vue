@@ -1,12 +1,14 @@
 # Rick-Morty-Api-Exercise VUE
-## Challenger week 4 Empathy Academy Front-End Path
+## Challenger week 4 - 5 Empathy Academy Front-End Path
 
 This challenge is developed with VUE framework.
 
 >**Main branch** have the first week working with Vue.
 
 >**Vuex branch** have my second week working with Vue and I will be using Vuex to improve my implementation from the first week.
-### Requirements from this challenge:
+
+
+### Requirements from Vue challenge:
 * Create Basic HTML and CSS structure in App.vue without any logic. ✅
 * Modify text input so it makes API calls to [rick & morty API](https://rickandmortyapi.com/) using the
    [filter endpoint](https://rickandmortyapi.com/documentation/#filter-characters). Save the results and print the characters by console. ✅
@@ -21,6 +23,14 @@ This challenge is developed with VUE framework.
 * Create `FilterList` component that allowed us to change the component used in the `v-for`.✅
 * Add fade-in transitions to the filters using the `Transition` components pre-built on Vue.✅
 * Add a button on the page so it shows a list of all the episodes. Everything else should remain the same.👨🏻‍💻
+
+### Requirements from Vuex challenge:
+
+* Create a basic store and move some data from your components to the store.✅
+* Use getters and the state to retrieve the info from the store.✅
+* Create mutations that modifies the state.✅
+* Create an action to call the api.✅
+* Divide the store en two modules, these modules should interact between them. Use namespaced:true.👨🏻‍💻
 
   ### Symbols Leyend:
   ```
