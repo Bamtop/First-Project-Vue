@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="logo-container">
-    <img class="logo-header" src="src/assets/navbar-logo.png" alt="rick y morty logo"/>
+    <img class="logo-header" src="../assets/navbar-logo.png" alt="rick y morty logo"/>
     </div>
    <div class="search-container">
 

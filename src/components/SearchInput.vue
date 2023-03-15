@@ -1,6 +1,6 @@
 <template>
   <div class="icon-container">
-    <img ref="icon" class="icon" src="src/assets/search-icon.png" alt="I am Jerry">
+    <img ref="icon" class="icon" src="../assets/search-icon.png" alt="I am Jerry">
   </div>
   <div class="search-input-control">
     <input id="search" type="text" required="" v-on:input="searchInput" v-on:blur="stopSpin" >
