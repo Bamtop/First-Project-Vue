@@ -16,8 +16,8 @@ export default {
   name: "SearchInput",
   methods: {
     searchInput(event) {
-      this.$store.commit('setQuery',event.target.value);
-      this.$store.dispatch('fetchCharacters')
+      this.$store.commit('filters/setQuery',event.target.value);
+      this.$store.dispatch('characters/fetchCharacters')
       this.setSpin(event);
           },
     setSpin(event){

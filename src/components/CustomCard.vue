@@ -19,7 +19,7 @@ export default {
 
   computed:{
     characters(){
-      return this.$store.state.characters;
+     return this.$store.getters['characters/getCharacters']
     }
   }
 }
@@ -37,7 +37,7 @@ export default {
   aspect-ratio: 16/9;
 }
 .card:hover{
-  transform:rotateY(360deg) rotateX(360deg) scale(1.1);
+  transform:rotateY(360deg)scale(1.3);
   background: palegoldenrod;
   border: #2580ef ridge 0.4rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

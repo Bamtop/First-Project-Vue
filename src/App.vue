@@ -57,23 +57,23 @@ export default {
   },
   methods: {
     addFilterStatus(event){
-      this.$store.commit('setFilterStatus',event)
-      this.$store.dispatch('fetchCharacters')
+      this.$store.commit('filters/setFilterStatus',event)
+      this.$store.dispatch('characters/fetchCharacters')
     },
     addFilterGender(event){
-      this.$store.commit('setFilterGender',event)
-      this.$store.dispatch('fetchCharacters')
+      this.$store.commit('filters/setFilterGender',event)
+      this.$store.dispatch('characters/fetchCharacters')
     },
     addFilterSpecies(event){
-      this.$store.commit('setFilterSpecie',event)
-      this.$store.dispatch('fetchCharacters')
+      this.$store.commit('filters/setFilterSpecie',event)
+      this.$store.dispatch('characters/fetchCharacters')
     },
     setup(){
-      return this.$store.dispatch('fetchCharacters');
+      return this.$store.dispatch('characters/fetchCharacters');
     },
   },
   computed: {
-    ...mapState(['statusSelect','genderSelect','speciesSelect','characters','currentQuery']),
+    ...mapState('filters',['statusSelect','genderSelect','speciesSelect','currentQuery']),
   },
 };
 </script>

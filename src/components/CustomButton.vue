@@ -20,16 +20,16 @@ export default {
 
   methods:{
     inputNexButton(){
-      this.$store.commit("setNext")
-      this.$store.dispatch('fetchCharacters')
+      this.$store.commit("characters/setNext")
+      this.$store.dispatch('characters/fetchCharacters')
     },
     inputPrevButton(){
-      this.$store.commit("setPrev")
-      this.$store.dispatch('fetchCharacters')
+      this.$store.commit("characters/setPrev")
+      this.$store.dispatch('characters/fetchCharacters')
     }
   },
   computed:{
-    ...mapState(['info']),
+    ...mapState("characters",['info']),
 
   }
 }
