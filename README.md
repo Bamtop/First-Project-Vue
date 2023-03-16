@@ -7,6 +7,8 @@ This challenge is developed with VUE framework.
 
 >**Vuex branch** have my second week working with Vue and I will be using Vuex to improve my implementation from the first week.
 
+>**gh-pages branch** have deploy of Vuex Branch
+
 
 ### Requirements from Vue challenge:
 * Create Basic HTML and CSS structure in App.vue without any logic. ✅
