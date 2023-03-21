@@ -1,5 +1,21 @@
+import {Commit, Dispatch, Module, Store} from "vuex";
+import { State } from "vue";
+import { ComponentCustomProperties } from "vue";
 
-export const charactersModule = {
+
+declare module '@vue/runtime-core' {
+    interface State {
+        characters:String,
+        info:String,
+        query:URL,
+        name:String,
+    }
+    interface ComponentCustomProperties {
+        $store: Store<State>|Store<Commit>|Store<Dispatch>
+    }
+}
+// @ts-ignore
+export const charactersModule:Module<any, any>= {
     namespaced: true,
     state: () => ({
         characters:[],
@@ -8,16 +24,16 @@ export const charactersModule = {
         isPrev:false,
     }),
     mutations: {
-        setCharacters(state, characters){
+        setCharacters(state:any, characters:any){
             state.characters = characters
         },
-        setNext(state){
+        setNext(state:any){
             state.isNext = true;
         },
-        setPrev(state){
+        setPrev(state:any){
             state.isPrev = true;
         },
-        setInfo(state, info){
+        setInfo(state:any, info:any){
             state.info = info;
         },
 

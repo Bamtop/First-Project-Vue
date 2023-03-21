@@ -11,29 +11,32 @@
 
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import {defineComponent} from "vue";
+
+export default defineComponent( {
   name: "SearchInput",
   methods: {
-    searchInput(event) {
+    searchInput(event:any) {
       this.$store.commit('filters/setQuery',event.target.value);
       this.$store.dispatch('characters/fetchCharacters')
       this.setSpin(event);
           },
-    setSpin(event){
-      const icon = this.$refs.icon;
+    setSpin(event:Event){
+      const icon:any = this.$refs.icon;
       icon.classList.add("spin");
 
     },
-    stopSpin(event){
-      const icon = this.$refs.icon;
-      icon.classList.remove("spin")
+    stopSpin(event:Event){
+      const icon:any = this.$refs.icon;
+      icon.classList.remove("spin");
     }
 
 
   },
 
 }
+);
 </script>
 
 <style>

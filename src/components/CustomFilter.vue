@@ -9,8 +9,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import {defineComponent} from "vue";
+
+export default defineComponent({
   name: "CustomFilter",
   props:{
     filters:{
@@ -24,7 +26,7 @@ export default {
     }
   },
   methods:{
-    boxChecked(event){
+    boxChecked(event:any){
       const filters = this.filterChecked;
       const filterValue = event.target.value;
       if(filters.has(filterValue)){
@@ -36,7 +38,7 @@ export default {
       this.$emit('box-checked',filters);
     }
   }
-}
+})
 </script>
 
 <style>

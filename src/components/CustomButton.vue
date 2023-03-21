@@ -13,10 +13,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {mapState} from "vuex";
+import {defineComponent} from "vue";
 
-export default {
+export default defineComponent( {
 
   methods:{
     inputNexButton(){
@@ -33,6 +34,7 @@ export default {
 
   }
 }
+)
 </script>
 
 <style scoped>

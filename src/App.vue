@@ -41,41 +41,42 @@
     <custom-button></custom-button>
   </main>
 </template>
-<script>
+<script lang="ts">
 import SearchInput from "@/components/SearchInput.vue";
-import CustomFilter from "@/components/CustomFilter.vue";
-import CustomCard from "@/components/CustomCard.vue";
-import CustomSelect from "@/components/CustomSelect.vue";
-import CharactersGrid from "@/components/CharactersGrid.vue";
-import CustomHeader from "@/components/CustomHeader.vue";
-import CustomButton from "@/components/CustomButton.vue";
+import CustomFilter from "./components/CustomFilter.vue";
+import CustomCard from "./components/CustomCard.vue";
+import CustomSelect from "./components/CustomSelect.vue";
+import CharactersGrid from "./components/CharactersGrid.vue";
+import CustomHeader from "./components/CustomHeader.vue";
+import CustomButton from "./components/CustomButton.vue";
 import {mapState} from "vuex";
-export default {
+import { defineComponent } from 'vue'
+export default defineComponent({
   components: {CustomButton, CustomHeader, CharactersGrid, CustomSelect, CustomCard, CustomFilter, SearchInput },
   mounted() {
     this.setup()
   },
   methods: {
-    addFilterStatus(event){
+    addFilterStatus(event:Event){
       this.$store.commit('filters/setFilterStatus',event)
       this.$store.dispatch('characters/fetchCharacters')
     },
-    addFilterGender(event){
+    addFilterGender(event:Event){
       this.$store.commit('filters/setFilterGender',event)
       this.$store.dispatch('characters/fetchCharacters')
     },
-    addFilterSpecies(event){
+    addFilterSpecies(event:Event){
       this.$store.commit('filters/setFilterSpecie',event)
       this.$store.dispatch('characters/fetchCharacters')
     },
-    setup(){
+    setup():any{
       return this.$store.dispatch('characters/fetchCharacters');
     },
   },
   computed: {
     ...mapState('filters',['statusSelect','genderSelect','speciesSelect','currentQuery']),
   },
-};
+});
 </script>
 <style>
 main {

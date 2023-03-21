@@ -1,4 +1,6 @@
-export const filtersModule = {
+import {Module} from "vuex";
+
+export const filtersModule:Module<any, any> = {
     namespaced : true,
     state: () => ({
         statusSelect:["Alive","unknown","Dead"],
